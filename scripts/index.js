@@ -77,6 +77,7 @@ window.addEventListener('storage', () => {
 /** COMPLETE THIS PART */
 
 async function getUsers() {
+  
   /**
    * Fetch the list of users from jsonplaceholder
    * If request successful, populate the select
@@ -85,16 +86,41 @@ async function getUsers() {
    */
 
   // Your code here
+  const url = "https://jsonplaceholder.typicode.com/users";
+  try {
+    const response = await fetch(url);
+    const users = await response.json();
+    populateSelectionOptions(users);
+    
+  } catch(error) {
+    console.error(error);
+  }
+
 
 }
 
 async function getPosts(user) {
+
 /**
  * Fetch posts belonging to this user
  * If request successful, display the posts
  */
 
 // Your code here
+
+const url = `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`;
+
+try {
+  const response = await fetch(url);
+  const posts = await response.json();
+
+  displayPosts(posts, user.name);
+} catch (error) {
+  console.error(error);
+}
+
+
+
 } 
 
 getUsers();

@@ -1,5 +1,6 @@
 /** COMPLETE THIS PART */
 async function addPost(post) {
+    try {
     /**
      * 1. Get the list posts from local storage
      *      if local storage is empty, initialize the list of posts to an empty array
@@ -8,6 +9,18 @@ async function addPost(post) {
      */
 
     // Your code here
+        let posts = JSON.parse(localStorage.getItem('posts'));
+        if(posts == null)
+            posts = [];
+
+        posts.unshift(post);
+
+        localStorage.setItem('posts', JSON.stringify(posts));
+    } catch (error) {
+        console.error(error);
+    }
+
+    
 }
 
 
